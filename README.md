@@ -119,26 +119,34 @@ heuristic = {
   A* Best Path: ['S', 'A', 'D', 'G'] with cost 6
   ```
 
-# Alpha-Beta Pruning in Python
+Here’s the updated **README** file that includes both **Minimax** and **Alpha-Beta Pruning** explanations:
+
+---
+
+# Minimax Algorithm and Alpha-Beta Pruning 
 
 ## Description
-Alpha-Beta pruning is an optimization technique for the minimax algorithm used in decision-making problems such as game trees. The algorithm efficiently reduces the number of nodes evaluated in the search tree by pruning branches that do not affect the final decision, making the search process faster without sacrificing accuracy.
+The **Minimax Algorithm** is a decision-making algorithm used in game theory, artificial intelligence, and decision-making problems. It operates in a game tree where two players, typically called the Maximizer and the Minimizer, alternate turns. The Maximizer attempts to maximize the score, while the Minimizer tries to minimize it.
 
-In the **Minimax Algorithm**, two players alternate between maximizing and minimizing the value of nodes. Alpha-Beta pruning eliminates unnecessary branches in the game tree, avoiding the evaluation of suboptimal moves.
+**Alpha-Beta Pruning** is an optimization technique for the Minimax algorithm. It reduces the number of nodes evaluated in the search tree by pruning branches that cannot affect the final decision, thereby making the process faster without losing accuracy.
 
 ## How it Works
-- **Alpha**: The best value that the maximizer (Maximizing player) can guarantee at the current level or higher.
-- **Beta**: The best value that the minimizer (Minimizing player) can guarantee at the current level or lower.
-- **Pruning**: When alpha is greater than or equal to beta, it implies that no further exploration is needed for the remaining branches of the current node.
+### Minimax Algorithm:
+1. **Maximizing Player**: Tries to maximize the value at the node.
+2. **Minimizing Player**: Tries to minimize the value at the node.
+3. The algorithm propagates the node values up the tree, ultimately leading to the root node where the decision is made.
 
-In the minimax tree:
-1. At each **Maximizing** node, the algorithm tries to maximize the current node’s value, updating `alpha`.
-2. At each **Minimizing** node, it tries to minimize the current node’s value, updating `beta`.
-3. If at any node, `alpha >= beta`, the branch is pruned (no need to evaluate that branch).
+### Alpha-Beta Pruning:
+- Alpha-beta pruning is an enhancement of the Minimax algorithm that skips branches in the tree that do not affect the final decision. 
+- **Alpha**: The best value that the Maximizer can guarantee at the current level.
+- **Beta**: The best value that the Minimizer can guarantee at the current level.
+- If at any node, `alpha >= beta`, further exploration of that branch is stopped, thus improving the efficiency of the algorithm.
 
-## Example Tree
+---
 
-Consider the following tree:
+## Example Tree Structure
+
+Both algorithms use the following tree:
 
 ```
           N1
@@ -150,17 +158,25 @@ Consider the following tree:
  1   4 7   2 3   0 6   5
 ```
 
-### Terminal Values (Leaf Nodes): 
-`[1, 4, 7, 2, 3, 0, 6, 5]`
-
-- The root `N1` is a **Maximizer**.
+- The root node `N1` is a **Maximizer**.
 - Nodes `N2` and `N3` are **Minimizers**.
 - Nodes `N4`, `N5`, `N6`, and `N7` are **Maximizers**.
 
-The algorithm recursively evaluates each node starting from the leaves, alternating between maximizing and minimizing the node values until it reaches the root. The Alpha-Beta pruning mechanism eliminates unnecessary branches to speed up the evaluation.
+The algorithm evaluates the game tree from the leaf nodes (terminal nodes) to the root by alternating between the two players.
 
-### Output:
+
+## Output for Both Algorithms:
+
+### Minimax Algorithm:
 ```
-The optimal value is: 5
+Optimal value using Minimax: 5
 ```
+
+### Alpha-Beta Pruning:
+```
+Optimal value using Alpha-Beta Pruning: 5
+```
+
+### Explanation:
+- Both algorithms yield the same optimal value (`5`), but **Alpha-Beta Pruning** performs the evaluation more efficiently by pruning branches of the tree that do not influence the final decision.
 
